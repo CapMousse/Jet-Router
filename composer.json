@@ -1,0 +1,27 @@
+{
+    "name"          : "jet/router",
+    "type"          : "library",
+    "description"   : "Simple package to build RESTful web application",
+    "keywords"      : [
+        "console",
+        "cli"
+    ],
+    "homepage"      : "awaiting",
+    "license"       : "BSD",
+    "authors"       : [
+        {
+            "name"      : "Jérémy Barbe",
+            "email"     : "contact@jeremybarbe.fr",
+            "homepage"  : "http://www.shwaark.com",
+            "role"      : "developer"
+        }
+    ],
+    "require"       : {
+        "php": ">=5.3.2"
+    },
+    "autoload"      : {
+        "psr-0": {
+            "Jet"       : "lib/"
+        }
+    }
+}
