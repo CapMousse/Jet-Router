@@ -62,9 +62,7 @@ $router->launch();
 - `:num` = allow numbers
 
 Any pattern can be named and used with the same name in the asked function/method :
-```
-[name]:pattern
-```
+    [name]:pattern
 
 ##Usefull tips
 Jet/Router provide some tools to detect XHR request and method type :
