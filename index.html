@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jet/Router by CapMousse</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jet/Router</h1>
+        <p>Simple package to create RESTfull app</p>
+
+        <p class="view"><a href="https://github.com/CapMousse/Jet-Router">View the Project on GitHub <small>CapMousse/Jet-Router</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/CapMousse/Jet-Router/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/CapMousse/Jet-Router/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/CapMousse/Jet-Router">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <blockquote>
+<p>The Jet Router package help you to create RESTfull application with named parametters and real testable url</p>
+</blockquote>
+
+<h2>Installation</h2>
+
+<p>Just download the git repository and get and autoload. Or load file manually. But I realy recommand to get an autoload file (realy, it's just crazy to load all file manualy).</p>
+
+<p>Jet/Router will be release to composer soon.</p>
+
+<h2>How to use</h2>
+
+<p>Before using this router, you need to create a <code>.htaccess</code> file to redirect all uri to your <code>frontController</code> or whatever for routing (replace <code>index.php</code> with your file) :</p>
+
+<pre><code>RewriteEngine on
+RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
+</code></pre>
+
+<p>To use this router package, you just need to create your urls :</p>
+
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Your\Namespace</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Jet\Router\Router</span><span class="p">;</span>
+
+<span class="nv">$router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'/'</span> <span class="o">=&gt;</span> <span class="k">function</span><span class="p">(){</span>
+        <span class="c1">//Do something here on the default URL</span>
+    <span class="p">},</span>
+    <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="k">function</span><span class="p">(</span><span class="nv">$error</span><span class="p">){</span>
+        <span class="c1">//Do something when url don't exists</span>
+    <span class="p">},</span>
+    <span class="s1">'article/[page]:num'</span> <span class="o">=&gt;</span> <span class="s1">'\Your\Namespace\Class:method'</span><span class="p">,</span>
+<span class="p">));</span>
+
+<span class="c1">//Or add url via addRoutes</span>
+
+<span class="nv">$router</span><span class="o">-&gt;</span><span class="na">addRoutes</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'article/:slug/[id]:num'</span> <span class="o">=&gt;</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//Do something with article ID</span>
+    <span class="p">}</span>
+<span class="p">));</span>
+
+<span class="c1">//And now, launch your router !</span>
+
+<span class="nv">$router</span><span class="o">-&gt;</span><span class="na">launch</span><span class="p">();</span>
+</pre></div>
+
+<h2>Use patterns in routes</h2>
+
+<ul>
+<li>
+<code>:any</code> = allow any char in url</li>
+<li>
+<code>:slug</code> = allow slugify text (this-is-a-tile-2493/dfds_fds)</li>
+<li>
+<code>:alpha</code> = allow alpha char</li>
+<li>
+<code>:num</code> = allow numbers</li>
+</ul><p>Any pattern can be named and used with the same name in the asked function/method :
+    [name]:pattern</p>
+
+<h2>Usefull tips</h2>
+
+<p>Jet/Router provide some tools to detect XHR request and method type :</p>
+
+<ul>
+<li>
+<code>Router::isXHR()</code> : detect is the uri is called via an XHR request</li>
+<li>
+<code>Router::getMethod()</code>: the method used for the asked url</li>
+</ul><h1>Test</h1>
+
+<p>Just run <code>phpunit</code> or see the travis status</p>
+
+<h2>Feel free to contribute!</h2>
+
+<ul>
+<li>Fork</li>
+<li>Report bug</li>
+<li>Help in development</li>
+<li>Buy me a new mac (what ?)</li>
+</ul><h2>Licence</h2>
+
+<p>Released under a <a href="http://en.wikipedia.org/wiki/BSD_licenses">BSD license</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/CapMousse">CapMousse</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
