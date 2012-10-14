@@ -95,13 +95,14 @@ class Router
 
     /**
      * Launch the route parsing
-     * 
-     * @param string|null $route the toute to parse
+     *
+     * @param string|null $route  the route to parse
+     * @param string|null $method the asked method
      *
      * @throws \RuntimeException
      * @return mixed
      */
-    public function launch($route = null){
+    public function launch($route = null, $method = null){
         if (count($this->routes) === 0) {
             throw new \RuntimeException("No routes defined");
         }
@@ -116,7 +117,9 @@ class Router
             unset($this->routes['error']);
         }
 
-        if (isset($_SERVER['REQUEST_METHOD'])) {
+        if (null !== $method){
+            self::$method = $method;
+        } else if (isset($_SERVER['REQUEST_METHOD'])) {
             self::$method = $_SERVER['REQUEST_METHOD'];
         } else {
             self::$method = "CONSOLE";
