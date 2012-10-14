@@ -133,8 +133,8 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         ));
         $value = sha1(time());
 
-        $this->assertEquals('default', $router->launch('/'), "Router can't call object default method");
-        $this->assertEquals('error', $router->launch($value), "Router can't call object error method");
+        $this->assertTrue($router->launch('/'), "Router can't call object default method");
+        $this->assertFalse($router->launch($value), "Router can't call object error method");
         $this->assertEquals($value, $router->launch('test/'.$value), "Router can't call object method with arguments");
     }
 
@@ -148,17 +148,9 @@ class RouterTest extends \PHPUnit_Framework_TestCase
                 function(){
                     return true;
                 }
-            ),
-            'test/[arg]:any' => array(
-                '\Tests\Fixtures\TestFixtures:testWithArgument',
-                function($arg) use ($value) {
-                    return ($arg === $value);
-                }
             )
         ));
 
-        $this->assertEquals('default', $router->launch('/'), "Router can't call object default method");
-        $this->assertEquals('error', $router->launch($value), "Router can't call object error method");
-        $this->assertEquals($value, $router->launch('test/'.$value), "Router can't call object method with arguments");
+        $this->assertTrue($router->launch('/'), "Router can't call object default method");
     }
 }

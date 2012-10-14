@@ -6,12 +6,12 @@ class TestFixtures
 {
     public function testDefault()
     {
-        return 'default';
+        return true;
     }
 
     public function testError()
     {
-        return 'error';
+        return false;
     }
 
     public function testWithArgument($arg)
