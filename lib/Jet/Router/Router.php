@@ -218,17 +218,28 @@ class Router
      * @param array|function $route the function/class to call
      * @param array          $args  args of the route
      *
-     * @throws \InvalidArgumentException
-     * @return mixed
+     * @return boolean
      */
     private function launchRoute($route, $args = array())
     {
+        if(is_array($route)){
+            $result = true;
+            foreach($route as $element){
+                if ($result && !$this->launch($element, $args)) {
+                    $result = false;
+                }
+            }
+
+            return $result;
+        }
+
+
         if (is_string($route)) {
             $route = explode(':', $route);
             $route[0] = new $route[0]();
         }
         
-        return call_user_func_array($route, $args); 
+        return call_user_func_array($route, $args);
     }
 
     /**

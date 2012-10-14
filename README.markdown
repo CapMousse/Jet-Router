@@ -54,6 +54,29 @@ $router->addRoutes(array(
 $router->launch();
 ```
 
+You can also add multiple `function` or `class` to one route :
+
+```php
+<?php
+
+namespace Your\Namespace;
+
+use Jet\Router\Router;
+
+$router = new Router(array(
+    '/' => array(
+        function(){
+            //Do something here on the default URL
+        },
+        function(){
+            //Do something else
+        },
+        '\Your\Namespace\Class:method',
+        '\Your\Other\Namespace\Class:method'        
+    )
+));
+```
+
 ##Use patterns in routes
 
 - `:any` = allow any char in url
