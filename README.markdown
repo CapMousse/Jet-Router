@@ -1,16 +1,16 @@
 [![Travis status](https://secure.travis-ci.org/CapMousse/Jet-Router.png)](http://travis-ci.org/#!/CapMousse/Jet-Router)
 
-#Jet Router
+# Jet Router
 
 > The Jet Router package help you to create RESTfull application with named parametters and real testable url
 
-##Installation
+## Installation
 
 Just download the git repository and get and autoload. Or load file manually. But I realy recommand to get an autoload file (realy, it's just crazy to load all file manualy).
 
 Jet/Router will be release to composer soon.
 
-##How to use
+## How to use
 
 Before using this router, you need to create a `.htaccess` file to redirect all uri to your `frontController` or whatever for routing (replace `index.php` with your file) :
 
@@ -77,7 +77,7 @@ $router = new Router(array(
 ));
 ```
 
-##Use patterns in routes
+## Use patterns in routes
 
 - `:any` = allow any char in url
 - `:slug` = allow slugify text (this-is-a-tile-2493/dfds_fds)
@@ -87,14 +87,14 @@ $router = new Router(array(
 Any pattern can be named and used with the same name in the asked function/method :
     [name]:pattern
 
-##Usefull tips
+## Usefull tips
 Jet/Router provide some tools to detect XHR request and method type :
 
 - `Router::isXHR()` : detect is the uri is called via an XHR request
 - `Router::getMethod()`: the method used for the asked url
 
 
-#Test
+# Test
 
 Just run `phpunit` or see the travis status
 

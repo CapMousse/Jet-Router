@@ -6,13 +6,12 @@
         "console",
         "cli"
     ],
-    "homepage"      : "awaiting",
     "license"       : "BSD",
     "authors"       : [
         {
             "name"      : "Jérémy Barbe",
-            "email"     : "contact@jeremybarbe.fr",
-            "homepage"  : "http://www.shwaark.com",
+            "email"     : "echo@jeremy.sh",
+            "homepage"  : "https://jeremy.sh",
             "role"      : "developer"
         }
     ],
